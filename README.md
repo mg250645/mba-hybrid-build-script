@@ -1,4 +1,4 @@
-# mba-hybrid-build-script
+# MBA Hybrid build script
 
 ## How it works?
 
@@ -8,19 +8,21 @@ steps:
 ### How to run hybrid app
 
 - Build bundle from mba-react-native project
-    - to build bundle use: nx bundle-ios
-    - The bundle is generated at dist/apps/mobile/ios/main.jsbundle
-- Copy bundle to mba-ios/MobileBanking/Modules/ReactNative
+    - to build bundle use: `nx bundle-ios`
+    - The bundle is generated at `dist/apps/mobile/ios/main.jsbundle`
+- Copy bundle to `mba-ios/MobileBanking/Modules/ReactNative`
 - Search for AppNavigation.swift file
     - Inside it search for `CustomRCTViewController`
     - Change it to this code:
-case .accounts, .myAccountsWidget:
-controller = CustomRCTViewController(feature: "accounts", useFSG: true)
-* Remove all the case (the if-else)
+```swift
+  case .accounts, .myAccountsWidget:
+  controller = CustomRCTViewController(feature: "accounts", useFSG: true)
+```
+* _Remove all the switch case (the if-else)_
 
 ### How to build and test the hybrid code
 
-1. Update mba-react-native (work as normal in the react native code)
+1. Update `mba-react-native` (work as normal in the react native code)
 2. Generate the bundle and move it to the project (check How to run hybrid app step 1 and 2)
 3. Stop the project in Xcode
 4. Clean the build folder
@@ -28,8 +30,8 @@ controller = CustomRCTViewController(feature: "accounts", useFSG: true)
 keeps hanging in the splash screen
 5. Rebuild the project (hit play button on Xcode)
 
-So, the script simplifies the steps. It do everything in the "How to build and test the hybrid code" automatically. It will 
-open up a clean xcode without cache so you just need to hit Play.
+So, the script simplifies the steps. It do everything in the _"How to build and test the hybrid code"_ automatically. It will 
+open up a clean xcode without cache so you just need to hit **Play**.
 
 # Important Notes
 
