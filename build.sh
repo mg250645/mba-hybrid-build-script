@@ -1,9 +1,32 @@
 #!/bin/sh
 
+# 0. Tell the script to run with a production or dev environment
+prod_flag=false
+
+while test $# -gt 0; do
+  case "$1" in
+    --production*)
+      echo "Running a production build"
+      prod_flag=true
+      break
+      ;;
+    *)
+      echo "Running a development build"
+      break
+      ;;
+  esac
+done
+
 # 1. Generate the bundle and move it to the mba-ios project
 echo "Generating bundle..."
 cd mba-react-native
-nx bundle-ios
+if [ prd_flag == 'true' ]
+then
+  nx bundle-ios --dev=false --reset-cache
+else
+  nx bundle-ios
+fi
+
 cd ..
 
 if [ -e mba-ios/MobileBanking/Modules/ReactNative/main.jsbundle ]
