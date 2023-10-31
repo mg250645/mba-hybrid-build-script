@@ -126,14 +126,13 @@ then
   exit 1
 fi
 
-# 1. Generate the bundle and move it to the mba-ios project
 echo "Generating ${platform} bundle..."
 cd mba-react-native
 
-if [ platform = "ios" ]
-then
+if [[ "$platform" == "ios" ]]; then
   ios_build
 else
   android_build
+fi
 
 echo "Wrapping up the build script..."
